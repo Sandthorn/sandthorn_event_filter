@@ -28,8 +28,8 @@ module SandthornEventFilter
       end
 
       def add_class_matcher(matchers, options)
-        if klasses = options[:classes]
-          matchers << ClassMatcher.new(klasses)
+        if types = options[:types]
+          matchers << AggregateTypeMatcher.new(types)
         end
       end
 

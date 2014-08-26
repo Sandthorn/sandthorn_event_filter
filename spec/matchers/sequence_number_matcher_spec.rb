@@ -5,13 +5,13 @@ module SandthornEventFilter
     describe SequenceNumberMatcher do
       let(:event) do
         {
-          aggregate_sequence_number: 1
+          sequence_number: 1
         }
       end
 
       context "when the event has a larger sequence number" do
         it "should match" do
-          sequence_number = event[:aggregate_sequence_number]
+          sequence_number = event[:sequence_number]
           matcher = SequenceNumberMatcher.new(sequence_number - 1)
           expect(matcher.match?(event)).to be_truthy
         end
@@ -19,7 +19,7 @@ module SandthornEventFilter
 
       context "when the event has the same or lower sequence number" do
         it "should not match" do
-          sequence_number = event[:aggregate_sequence_number]
+          sequence_number = event[:sequence_number]
           exact_matcher = SequenceNumberMatcher.new(sequence_number)
           larger_matcher = SequenceNumberMatcher.new(sequence_number + 1)
           expect(exact_matcher.match?(event)).to be_falsey

@@ -9,7 +9,7 @@ module SandthornEventFilter
       end
 
       def match?(event)
-        event[:aggregate_sequence_number] > sequence_number
+        event[:sequence_number] > sequence_number
       end
     end
   end

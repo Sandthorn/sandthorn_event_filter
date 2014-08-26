@@ -6,18 +6,9 @@ module SandthornEventFilter
     # Delegates to the raw data hash, so you can still do Event.new(data)[:foo]
 
     def attribute_changed?(attribute)
-      input_attributes = extract_attribute_names(attribute)
+      input_attributes = Array(attribute)
       changed_attributes.any? do |attr|
         input_attributes.include?(attr)
-      end
-    end
-
-    def extract_attribute_names(attribute)
-      attributes = Array(attribute)
-      attributes.collect do |a|
-        a = a.to_s
-        a = "@#{a}" unless a[0] == "@"
-        a.to_sym
       end
     end
 
@@ -28,7 +19,7 @@ module SandthornEventFilter
     end
 
     def attribute_deltas
-      self[:aggregate_attribute_deltas] || []
+      self[:attribute_deltas] || []
     end
 
     class << self

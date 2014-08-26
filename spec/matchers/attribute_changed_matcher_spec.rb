@@ -8,24 +8,21 @@ module SandthornEventFilter
             aggregate_id:"555dc484-5727-44b1-a8da-0f85014d7204",
             aggregate_type: "ProductAggregates::Store",
             aggregate_version: 1,
-            aggregate_timestamp: Time.parse("2014-08-05 16:00:40.107738"),
-            aggregate_sequence_number: 3,
-            aggregate_event_name: "new",
-            aggregate_attribute_deltas: [
+            timestamp: Time.parse("2014-08-05 16:00:40.107738"),
+            sequence_number: 3,
+            event_name: "new",
+            attribute_deltas: [
                 {
-                    attribute_name: :@name,
+                    attribute_name: "name",
                     new_value: nil,
                     old_value: nil
                 },
                 {
-                    attribute_name: :@description,
+                    attribute_name: "description",
                     new_value: nil,
                     old_value: nil
                 }
-            ],
-            aggregate_trace: nil,
-            name: nil,
-            description: nil
+            ]
         }
       end
 

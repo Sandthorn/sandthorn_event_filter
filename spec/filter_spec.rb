@@ -39,7 +39,7 @@ module SandthornEventFilter
       context "when there is a filter" do
         let(:events) { [{ aggregate_type: "Foo" }, { aggregate_type: "Bar" }] }
         it "should return the filtered result" do
-          filter = Filter.new(events).extract(classes: "Foo")
+          filter = Filter.new(events).extract(types: "Foo")
           filtered_events = filter.events
           expect(filtered_events.length).to eq(1)
           expect(filtered_events).to include(events.first)
@@ -50,7 +50,7 @@ module SandthornEventFilter
     describe ".apply" do
       let(:events) { [{ aggregate_type: "Foo" }, { aggregate_type: "Bar" }] }
       it "should return the filtered result" do
-        filter = Filter.new.extract(classes: "Foo")
+        filter = Filter.new.extract(types: "Foo")
         filtered_events = filter.apply(events)
         expect(filtered_events.length).to eq(1)
         expect(filtered_events).to include(events.first)
@@ -62,20 +62,20 @@ module SandthornEventFilter
       context "when chaining filters" do
         it "should leave the original filter untouched" do
           filter = Filter.new(events)
-          other_filter = filter.extract(classes: "Foo")
+          other_filter = filter.extract(types: "Foo")
           expect(filter.events).to eq(events)
         end
 
         describe "the new filter" do
           it "should be a new filter instance" do
             filter = Filter.new(events)
-            other_filter = filter.extract(classes: "Foo")
+            other_filter = filter.extract(types: "Foo")
             expect(other_filter).to_not equal(filter)
           end
 
           it "should have the same original events" do
             filter = Filter.new(events)
-            other_filter = filter.extract(classes: "Foo")
+            other_filter = filter.extract(types: "Foo")
             expect(other_filter.original_events).to eq(filter.original_events)
           end
         end

@@ -3,8 +3,8 @@ require 'spec_helper'
 module SandthornEventFilter
   module Matchers
     describe EventNameMatcher do
-      let(:foo_event) { { aggregate_event_name: "Foo"} }
-      let(:bar_event) { { aggregate_event_name: "Bar"} }
+      let(:foo_event) { { event_name: "Foo"} }
+      let(:bar_event) { { event_name: "Bar"} }
 
       describe ".match?" do
         context "when given one event name" do
