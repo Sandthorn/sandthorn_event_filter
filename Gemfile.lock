@@ -1,0 +1,49 @@
+PATH
+  remote: .
+  specs:
+    sandthorn_event_filter (0.0.1)
+      hamster
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    autotest-standalone (4.5.11)
+    coderay (1.1.0)
+    diff-lcs (1.2.5)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
+    gem-release (0.7.3)
+    hamster (0.4.3)
+    method_source (0.8.2)
+    pry (0.10.0)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    rake (10.3.2)
+    rspec (3.0.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+    rspec-core (3.0.3)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.0.0)
+    rspec-mocks (3.0.3)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.3)
+    slop (3.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  autotest-standalone
+  bundler (~> 1.6)
+  dotenv
+  gem-release
+  pry
+  rake
+  rspec
+  sandthorn_event_filter!

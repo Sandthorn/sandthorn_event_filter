@@ -1,0 +1,39 @@
+require 'delegate'
+module SandthornEventFilter
+  class Event < SimpleDelegator
+    # Wraps raw event data and encapsulates knowledge about it
+    # Makes sure the event is in canonical form
+    # Delegates to the raw data hash, so you can still do Event.new(data)[:foo]
+
+    def attribute_changed?(attribute)
+      input_attributes = extract_attribute_names(attribute)
+      changed_attributes.any? do |attr|
+        input_attributes.include?(attr)
+      end
+    end
+
+    def extract_attribute_names(attribute)
+      attributes = Array(attribute)
+      attributes.collect do |a|
+        a = a.to_s
+        a = "@#{a}" unless a[0] == "@"
+        a.to_sym
+      end
+    end
+
+    def changed_attributes
+      attribute_deltas.map do |delta|
+        delta[:attribute_name]
+      end
+    end
+
+    def attribute_deltas
+      self[:aggregate_attribute_deltas] || []
+    end
+
+    class << self
+      alias_method :wrap, :new
+    end
+
+  end
+end
