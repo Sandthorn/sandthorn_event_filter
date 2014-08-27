@@ -13,7 +13,7 @@ module SandthornEventFilter
       private
 
       def submatchers_match?(event)
-        submatchers.all? { |subf| subf.match?(event) }
+        submatchers.all? { |submatcher| submatcher.match?(event) }
       end
 
       def submatchers
