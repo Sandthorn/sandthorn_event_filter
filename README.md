@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Sandthorn/sandthorn_event_filter.svg?branch=develop)](https://travis-ci.org/Sandthorn/sandthorn_event_filter)
+
 # SandthornEventFilter
 
 SandthornEventFilter is a library for creating composable event filters.
