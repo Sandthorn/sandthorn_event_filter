@@ -126,12 +126,23 @@ module SandthornEventFilter
       end
     end
 
-    context 'when removing evnets for an aggregate type' do
-      it "should returning matching events" do
+    context 'when removing events for an aggregate type' do
+      it "should return matching events" do
         filter = Filter.new(events).remove(types: 'SandthornTest')
         filtered = filter.events
         expect(filtered.length).to eq(19)
         expect(filtered).to all( have_aggregate_type 'SandthornProduct' )
+      end
+    end
+
+    context "when extracting events with a changed attribute" do
+      it "should return matching events" do
+        filter = Filter.new(events).extract(changed_attributes: "name")
+        filtered = filter.events
+        expect(filtered.length).to eq(11)
+        filtered.each do |event|
+          expect(event[:attribute_deltas].any? {|delta| delta[:attribute_name] == "name" }).to be_truthy
+        end
       end
     end
 

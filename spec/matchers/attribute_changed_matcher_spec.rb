@@ -33,6 +33,13 @@ module SandthornEventFilter
             expect(matcher.match?(event)).to be_truthy
           end
         end
+
+        context "when given a non-changed attribute" do
+          it "should return false" do
+            matcher = AttributeChangedMatcher.new("foo")
+            expect(matcher.match?(event)).to be_falsey
+          end
+        end
       end
     end
   end

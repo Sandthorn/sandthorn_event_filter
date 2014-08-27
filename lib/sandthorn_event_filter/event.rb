@@ -19,7 +19,7 @@ module SandthornEventFilter
     end
 
     def attribute_deltas
-      self[:attribute_deltas] || []
+      self.fetch(:event_args, []).fetch(:attribute_deltas, [])
     end
 
     def aggregate_type

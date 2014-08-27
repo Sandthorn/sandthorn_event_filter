@@ -39,6 +39,12 @@ module SandthornEventFilter
         end
       end
 
+      def add_changed_attributes_matcher(matchers, options)
+        if attributes = options[:changed_attributes]
+          matchers << AttributeChangedMatcher.new(attributes)
+        end
+      end
+
     end
   end
 end
