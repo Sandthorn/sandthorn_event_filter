@@ -141,7 +141,7 @@ module SandthornEventFilter
         filtered = filter.events
         expect(filtered.length).to eq(11)
         filtered.each do |event|
-          expect(event[:attribute_deltas].any? {|delta| delta[:attribute_name] == "name" }).to be_truthy
+          expect(Event.wrap(event).attribute_deltas.any? {|delta| delta[:attribute_name] == "name" }).to be_truthy
         end
       end
     end

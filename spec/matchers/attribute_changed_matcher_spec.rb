@@ -11,18 +11,20 @@ module SandthornEventFilter
             timestamp: Time.parse("2014-08-05 16:00:40.107738"),
             sequence_number: 3,
             event_name: "new",
-            attribute_deltas: [
-                {
-                    attribute_name: "name",
-                    new_value: nil,
-                    old_value: nil
-                },
-                {
-                    attribute_name: "description",
-                    new_value: nil,
-                    old_value: nil
-                }
-            ]
+            event_args: {
+              attribute_deltas: [
+                  {
+                      attribute_name: "name",
+                      new_value: nil,
+                      old_value: nil
+                  },
+                  {
+                      attribute_name: "description",
+                      new_value: nil,
+                      old_value: nil
+                  }
+              ]
+            }
         }
       end
 

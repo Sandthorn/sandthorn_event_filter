@@ -24,6 +24,7 @@ module SandthornEventFilter
         matchers = []
         add_class_matcher(matchers, options)
         add_event_name_matcher(matchers, options)
+        add_changed_attributes_matcher(matchers, options)
         matchers
       end
 
