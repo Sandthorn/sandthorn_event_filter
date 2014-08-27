@@ -11,18 +11,20 @@ module SandthornEventFilter
             timestamp: Time.parse("2014-08-05 16:00:40.107738"),
             sequence_number: 3,
             event_name: "new",
-            attribute_deltas: [
-                {
-                    attribute_name: "name",
-                    new_value: nil,
-                    old_value: nil
-                },
-                {
-                    attribute_name: "description",
-                    new_value: nil,
-                    old_value: nil
-                }
-            ]
+            event_args: {
+              attribute_deltas: [
+                  {
+                      attribute_name: "name",
+                      new_value: nil,
+                      old_value: nil
+                  },
+                  {
+                      attribute_name: "description",
+                      new_value: nil,
+                      old_value: nil
+                  }
+              ]
+            }
         }
       end
 
@@ -31,6 +33,13 @@ module SandthornEventFilter
           it "should return true" do
             matcher = AttributeChangedMatcher.new("name")
             expect(matcher.match?(event)).to be_truthy
+          end
+        end
+
+        context "when given a non-changed attribute" do
+          it "should return false" do
+            matcher = AttributeChangedMatcher.new("foo")
+            expect(matcher.match?(event)).to be_falsey
           end
         end
       end

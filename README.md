@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Sandthorn/sandthorn_event_filter.svg?branch=develop)](https://travis-ci.org/Sandthorn/sandthorn_event_filter)
+
 # SandthornEventFilter
 
 SandthornEventFilter is a library for creating composable event filters.
@@ -38,7 +40,7 @@ You can also enumerate on the filter directly:
     
 `extract` returns a new filter that extracts the chosen events:
 
-    new_events = filter.extract(events: "new", classes: MyAggregate, after_sequence_number: 100)
+    new_events = filter.extract(events: "new", types: MyAggregate, after_sequence_number: 100)
     new_events.events
     # => events that match the criteria
     

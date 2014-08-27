@@ -13,7 +13,7 @@ module SandthornEventFilter
       private
 
       def submatchers_match?(event)
-        submatchers.all? { |subf| subf.match?(event) }
+        submatchers.all? { |submatcher| submatcher.match?(event) }
       end
 
       def submatchers
@@ -24,6 +24,7 @@ module SandthornEventFilter
         matchers = []
         add_class_matcher(matchers, options)
         add_event_name_matcher(matchers, options)
+        add_changed_attributes_matcher(matchers, options)
         matchers
       end
 
@@ -36,6 +37,12 @@ module SandthornEventFilter
       def add_event_name_matcher(matchers, options)
         if names = options[:events]
           matchers << EventNameMatcher.new(names)
+        end
+      end
+
+      def add_changed_attributes_matcher(matchers, options)
+        if attributes = options[:changed_attributes]
+          matchers << AttributeChangedMatcher.new(attributes)
         end
       end
 
