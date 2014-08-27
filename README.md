@@ -38,7 +38,7 @@ You can also enumerate on the filter directly:
     
 `extract` returns a new filter that extracts the chosen events:
 
-    new_events = filter.extract(events: "new", classes: MyAggregate, after_sequence_number: 100)
+    new_events = filter.extract(events: "new", types: MyAggregate, after_sequence_number: 100)
     new_events.events
     # => events that match the criteria
     
