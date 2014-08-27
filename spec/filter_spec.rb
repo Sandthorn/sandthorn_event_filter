@@ -86,8 +86,52 @@ module SandthornEventFilter
       let(:events) { [{aggregate_type: "Foo"}, {aggregate_type: "Bar"}] }
       it "should return a new filter" do
         filter = Filter.new(events)
-        expect(filter.select { |e| e }).to be_kind_of Filter
-        expect(filter.reject { |e| !e }).to be_kind_of Filter
+        reject = filter.select { |e| e[:aggregate_type] == "Foo" }
+        select = filter.reject { |e| e[:aggregate_type] == "Bar" }
+        expect(reject).to be_kind_of Filter
+        expect(select).to be_kind_of Filter
+        expect(select.events).to eq([events.first])
+        expect(reject.events).to eq([events.first])
+      end
+    end
+
+  end
+
+  describe 'tests on actual data' do
+    let(:events) { SandthornEventFilter::Fixtures::EVENTS }
+
+    context 'when extracting `new` events' do
+      it "should return matching events" do
+        new_events_filter = Filter.new(events).extract(events: "new")
+        expect(new_events_filter.length).to eq(2)
+        event = Event.wrap(new_events_filter.first)
+        expect(event.name).to eq("new")
+      end
+    end
+
+    context 'when removing `new` events' do
+      it "should return matching events" do
+        filter = Filter.new(events).remove(events: 'new')
+        filtered = filter.events
+        expect(filtered.length).to eq(18)
+      end
+    end
+
+    context 'when extracting events for an aggregate type' do
+      it "should return only matching events" do
+        filter = Filter.new(events).extract(types: 'SandthornTest')
+        filtered = filter.events
+        expect(filtered.length).to eq(1)
+        expect(Event.wrap(filtered.first).aggregate_type).to eq("SandthornTest")
+      end
+    end
+
+    context 'when removing evnets for an aggregate type' do
+      it "should returning matching events" do
+        filter = Filter.new(events).remove(types: 'SandthornTest')
+        filtered = filter.events
+        expect(filtered.length).to eq(19)
+        expect(filtered).to all( have_aggregate_type 'SandthornProduct' )
       end
     end
 

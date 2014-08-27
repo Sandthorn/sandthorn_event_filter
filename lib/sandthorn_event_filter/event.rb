@@ -22,6 +22,14 @@ module SandthornEventFilter
       self[:attribute_deltas] || []
     end
 
+    def aggregate_type
+      self[:aggregate_type]
+    end
+
+    def name
+      self[:event_name]
+    end
+
     class << self
       alias_method :wrap, :new
     end
