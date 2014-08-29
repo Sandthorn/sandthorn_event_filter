@@ -16,7 +16,7 @@ module SandthornEventFilter
 
       # Returns all events that match all of the matchers in the collection
       def apply(events)
-        events.select { |event| matchers.all? { |matcher| matcher.match?(event) } }
+        events.select { |event| match?(event) }
       end
 
       # Returns a new instance of MatcherCollection, with the new matchers added.
@@ -29,6 +29,11 @@ module SandthornEventFilter
           matcher_collection.cons(matcher)
         end
         self.class.new(matchers)
+      end
+
+      # Returns true if all matchers match the given event
+      def match?(event)
+        matchers.all? { |matcher| matcher.match?(event) }
       end
 
     end
