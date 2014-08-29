@@ -26,6 +26,7 @@ module SandthornEventFilter
     include Enumerable
 
     def_delegators :events, :each, :last, :length, :empty?, :[]
+    def_delegators :matchers, :apply, :match?
 
     attr_reader :matchers, :original_events
 
@@ -67,10 +68,6 @@ module SandthornEventFilter
       # This works because .add returns a new MatcherCollection
       new_matchers = @matchers.add(matcher)
       self.class.new(original_events, new_matchers)
-    end
-
-    def apply(events)
-      @matchers.apply(events)
     end
 
   end

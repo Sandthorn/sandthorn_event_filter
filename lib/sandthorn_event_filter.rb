@@ -3,5 +3,7 @@ require "sandthorn_event_filter/event"
 require "sandthorn_event_filter/filter"
 
 module SandthornEventFilter
-  # Your code goes here...
+  def self.filter(*args)
+    Filter.new(*args)
+  end
 end

@@ -32,12 +32,30 @@ module SandthornEventFilter
 
         context "when there are matchers" do
           it "should call match? on the matchers for each event" do
-            filters = [IdentityMatcher.new, IdentityMatcher.new]
-            new_chain = chain.add(filters)
-            filters.each do |filter|
-              expect(filter).to receive(:match?).exactly(3).times.and_call_original
+            matchers = [IdentityMatcher.new, IdentityMatcher.new]
+            new_chain = chain.add(matchers)
+            matchers.each do |matcher|
+              expect(matcher).to receive(:match?).exactly(3).times.and_call_original
             end
             new_chain.apply(events)
+          end
+        end
+      end
+
+      describe ".match?" do
+        context "when all the matchers match" do
+          it "returns true" do
+            filters = [IdentityMatcher.new, IdentityMatcher.new]
+            new_chain = chain.add(filters)
+            expect(new_chain.match?({foo: :bar})).to be_truthy
+          end
+        end
+
+        context "when one matchers doesn't match" do
+          it "returns false" do
+            filters = [IdentityMatcher.new, NotMatcher.new(IdentityMatcher.new)]
+            new_chain = chain.add(filters)
+            expect(new_chain.match?({foo: :bar})).to be_falsey
           end
         end
       end
