@@ -97,6 +97,15 @@ module SandthornEventFilter
 
   end
 
+  describe ".match?" do
+    context "when the filter is empty" do
+      it "should match everything" do
+        filter = Filter.new
+        expect(filter).to match({})
+      end
+    end
+  end
+
   describe 'tests on actual data' do
     let(:events) { SandthornEventFilter::Fixtures::EVENTS }
 

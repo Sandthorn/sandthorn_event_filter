@@ -13,7 +13,7 @@ module SandthornEventFilter
         it "should match" do
           sequence_number = event[:sequence_number]
           matcher = SequenceNumberMatcher.new(sequence_number - 1)
-          expect(matcher.match?(event)).to be_truthy
+          expect(matcher).to match(event)
         end
       end
 
@@ -22,8 +22,8 @@ module SandthornEventFilter
           sequence_number = event[:sequence_number]
           exact_matcher = SequenceNumberMatcher.new(sequence_number)
           larger_matcher = SequenceNumberMatcher.new(sequence_number + 1)
-          expect(exact_matcher.match?(event)).to be_falsey
-          expect(larger_matcher.match?(event)).to be_falsey
+          expect(exact_matcher).to_not match(event)
+          expect(larger_matcher).to_not match(event)
         end
       end
     end

@@ -32,14 +32,14 @@ module SandthornEventFilter
         context "when given a changed attributes" do
           it "should return true" do
             matcher = AttributeChangedMatcher.new("name")
-            expect(matcher.match?(event)).to be_truthy
+            expect(matcher).to match(event)
           end
         end
 
         context "when given a non-changed attribute" do
           it "should return false" do
             matcher = AttributeChangedMatcher.new("foo")
-            expect(matcher.match?(event)).to be_falsey
+            expect(matcher).to_not match(event)
           end
         end
       end

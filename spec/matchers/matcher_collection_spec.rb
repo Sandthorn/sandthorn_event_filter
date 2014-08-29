@@ -47,7 +47,7 @@ module SandthornEventFilter
           it "returns true" do
             filters = [IdentityMatcher.new, IdentityMatcher.new]
             new_chain = chain.add(filters)
-            expect(new_chain.match?({foo: :bar})).to be_truthy
+            expect(new_chain).to match({foo: :bar})
           end
         end
 
@@ -55,7 +55,7 @@ module SandthornEventFilter
           it "returns false" do
             filters = [IdentityMatcher.new, NotMatcher.new(IdentityMatcher.new)]
             new_chain = chain.add(filters)
-            expect(new_chain.match?({foo: :bar})).to be_falsey
+            expect(new_chain).to_not match({foo: :bar})
           end
         end
       end
