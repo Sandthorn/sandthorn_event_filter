@@ -12,13 +12,13 @@ module SandthornEventFilter
 
         context "when given a matching event" do
           it "should match" do
-            expect(foo_extractor.match?(foo_event)).to be_truthy
+            expect(foo_extractor).to match(foo_event)
           end
         end
 
         context "when given a non-matching event" do
           it "shouldn't match" do
-            expect(foo_extractor.match?(bar_event)).to be_falsey
+            expect(foo_extractor).to_not match(bar_event)
           end
         end
       end
@@ -28,13 +28,13 @@ module SandthornEventFilter
 
         context "when given a matching event" do
           it "should match" do
-            expect(foo_extractor.match?(foo_event)).to be_truthy
+            expect(foo_extractor).to match(foo_event)
           end
         end
 
         context "when given a non-matching event" do
           it "should not match" do
-            expect(foo_extractor.match?(bar_event)).to be_falsey
+            expect(foo_extractor).to_not match(bar_event)
           end
         end
       end
@@ -43,14 +43,14 @@ module SandthornEventFilter
         let(:combo) { Extract.new(types: "Foo", events: "foo") }
         context "when given an event that matches all of the criteria" do
           it "should match" do
-            expect(combo.match?(foo_event)).to be_truthy
+            expect(combo).to match(foo_event)
           end
         end
 
         context "when given a partially matching event" do
           it "should not match" do
             event = { event_name: "foo", aggregate_type: "Baz" }
-            expect(combo.match?(event)).to be_falsey
+            expect(combo).to_not match(event)
           end
         end
       end

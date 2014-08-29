@@ -8,7 +8,7 @@ module SandthornEventFilter
           matcher = BlockMatcher.new do |event|
             true
           end
-          expect(matcher.match?({})).to be_truthy
+          expect(matcher).to match({})
         end
       end
 
@@ -17,7 +17,7 @@ module SandthornEventFilter
           matcher = BlockMatcher.new do |event|
             false
           end
-          expect(matcher.match?({})).to be_falsey
+          expect(matcher).to_not match({})
         end
       end
 
