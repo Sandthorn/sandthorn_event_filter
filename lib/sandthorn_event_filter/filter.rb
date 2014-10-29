@@ -1,13 +1,4 @@
-require 'sandthorn_event_filter/matchers/matcher_collection'
-require 'sandthorn_event_filter/matchers/matcher'
-require 'sandthorn_event_filter/matchers/extract'
-require 'sandthorn_event_filter/matchers/attribute_changed_matcher'
-require 'sandthorn_event_filter/matchers/not_matcher'
-require 'sandthorn_event_filter/matchers/identity_matcher'
-require 'sandthorn_event_filter/matchers/aggregate_type_matcher'
-require 'sandthorn_event_filter/matchers/event_name_matcher'
-require 'sandthorn_event_filter/matchers/block_matcher'
-require 'sandthorn_event_filter/matchers/sequence_number_matcher'
+require 'sandthorn_event_filter/matchers'
 
 module SandthornEventFilter
   class Filter
