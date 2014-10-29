@@ -12,7 +12,7 @@ They are composable in the following senses:
 
 Add this line to your application's Gemfile:
 
-    gem 'event_filter'
+    gem 'sandthorn_event_filter'
 
 And then execute:
 
@@ -20,17 +20,19 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install event_filter
+    $ gem install sandthorn_event_filter
 
 ## Usage
 
 The basic way to use a Filter is to wrap an array of Events:
 
     filter = SandthornEventFilter::Filter.new(my_events)
+    # Or using shorthand
+    filter = SandthornEventFilter.filter(my_events)
 
 You can always call `.events` to get the filtered events:
     
-    # This filter is empty, and will return the original events
+    # This filter has no matchers, and will return the original events
     filter.events
     # => [...]
     
@@ -44,7 +46,7 @@ You can also enumerate on the filter directly:
     new_events.events
     # => events that match the criteria
     
-`remove` returns a new filter with removes the chosen events:
+`remove` returns a new filter which removes the chosen events:
 
     except_new = filter.remove(events: "new")
     except_new.events
@@ -55,6 +57,7 @@ You can also enumerate on the filter directly:
 You can also create a filter chain without supplying initial events, and apply that chain to any
 array of events.
 
-    filter = Filter.new.reject(events: "new")
+    filter = SandthornEventFilter.filter.reject(events: "new")
     filter.apply(my_array_of_events)
     # => [ ... array ... ]
+
