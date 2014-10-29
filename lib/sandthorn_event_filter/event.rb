@@ -30,6 +30,10 @@ module SandthornEventFilter
       self[:event_name]
     end
 
+    def sequence_number
+      self[:sequence_number]
+    end
+
     class << self
       alias_method :wrap, :new
     end
