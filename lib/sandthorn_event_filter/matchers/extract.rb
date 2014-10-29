@@ -25,6 +25,7 @@ module SandthornEventFilter
         add_class_matcher(matchers, options)
         add_event_name_matcher(matchers, options)
         add_changed_attributes_matcher(matchers, options)
+        add_sequence_number_matcher(matchers, options)
         matchers
       end
 
@@ -43,6 +44,13 @@ module SandthornEventFilter
       def add_changed_attributes_matcher(matchers, options)
         if attributes = options[:changed_attributes]
           matchers << AttributeChangedMatcher.new(attributes)
+        end
+      end
+
+      def add_sequence_number_matcher(matchers, options)
+        sequence_number = options[:after_sequence_number]
+        unless sequence_number.nil?
+          matchers << SequenceNumberMatcher.new(sequence_number)
         end
       end
 

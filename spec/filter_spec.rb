@@ -155,6 +155,15 @@ module SandthornEventFilter
       end
     end
 
+    context "when extracting events with after a sequence number" do
+      it "should return matching events" do
+        filter = Filter.new(events).extract(after_sequence_number: 17)
+        filtered = filter.events
+        expect(filtered.length).to eq(3)
+        filtered.each do |event|
+          expect(Event.wrap(event).sequence_number).to be > 17
+        end
+      end
+    end
   end
-
 end
