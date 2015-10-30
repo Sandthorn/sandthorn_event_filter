@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sandthorn_event_filter (0.0.4)
+    sandthorn_event_filter (0.0.5)
       hamster (= 1.0.0)
 
 GEM
